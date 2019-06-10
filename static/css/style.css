@@ -1,0 +1,36 @@
+/* themes  */
+:root {
+  --c1: #6b7a8f;
+  --c2: #f7882f;
+  --c3: #f7c331;
+  --c4: #dcc7aa;
+}
+
+html,
+body {
+  font-family: "IBM Plex Mono", monospace !important;
+  background: var(--c2);
+  min-height: 100%;
+  color: var(--c1);
+}
+
+#header {
+  padding: 4em 0 4em 0;
+}
+
+#footer {
+  padding: 1em 0 1em 0;
+}
+
+.container {
+  background: white;
+}
+
+.cell {
+  padding: 0.3em 0 0.3em 0;
+  margin: 0.2em 0 0.2em 0;
+}
+
+.song {
+  color: var(--c3);
+}
