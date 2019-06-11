@@ -36,7 +36,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container mx-2 mx-md-auto">
     <div id="header" class="row">
       <div class="col">
         <div id="typed-strings">
@@ -47,33 +47,32 @@
           <p>song</p>
         </div>
 
-        <h1 class="text-center">This is a great <span id="typed"
-        class="song"></span> name...</h1>
+        <h1 class="text-center">Great <span id="typed" class=
+        "song"></span> name...</h1>
       </div>
     </div>
     <hr>
 
-    <form action="post">
+    <form action="/" method="get">
       <div class="form-row align-items-center">
         <div class="col-lg-1"></div>
 
         <div class="col-lg-6">
-          <input type="text" value="" class="form-control mb-6"
+          <input type="text" name="name" class="form-control mb-6"
           placeholder="Input idea">
         </div>
 
         <div class="col-lg-2">
-          <select class="custom-select my-1 mr-sm-2" id=
-          "inlineFormCustomSelectPref">
+          <select class="custom-select my-1 mr-sm-2">
             <option selected value="band">
               band
             </option>
 
-            <option value="2">
+            <option value="album">
               album
             </option>
 
-            <option value="3">
+            <option value="song">
               song
             </option>
           </select>
@@ -88,13 +87,13 @@
       <div class="col-lg-1"></div>
     </form>
     <hr>
-    {% for entry in nums %}
+    {% for entry in entries%}
 
     <div class="row">
       <div class="col">
         <div class="card cell">
           <div class="card-body text-center">
-            <h3 class="card-text">Number: {{entry}}</h3>
+            <h3 class="card-text">{{entry.name}}</h3>
           </div>
         </div>
       </div>
