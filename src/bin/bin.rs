@@ -15,10 +15,18 @@ use bandname::{models::*, NamesDbConn};
 
 // route handlers
 #[get("/?<name>&<nametype>")]
-fn index(conn: NamesDbConn, name: String, nametype: String) -> Template {
+fn update(conn: NamesDbConn, name: String, nametype: String) -> Template {
     // insert new entry into table
     Name::insert(&*conn, name, nametype);
 
+    // get results from db
+    let mut results = HashMap::new();
+    results.insert("entries", Name::all(&*conn));
+
+    Template::render("index", results)
+}
+#[get("/", rank = 2)]
+fn home(conn: NamesDbConn) -> Template {
     // get results from db
     let mut results = HashMap::new();
     results.insert("entries", Name::all(&*conn));
@@ -32,6 +40,6 @@ fn main() {
         .attach(Template::fairing())
         .attach(NamesDbConn::fairing())
         .mount("/", StaticFiles::from("static/"))
-        .mount("/", routes![index])
+        .mount("/", routes![update, home])
         .launch();
 }

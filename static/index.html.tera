@@ -36,7 +36,7 @@
 </head>
 
 <body>
-  <div class="container mx-2 mx-md-auto">
+  <div class="container">
     <div id="header" class="row">
       <div class="col">
         <div id="typed-strings">
@@ -48,7 +48,7 @@
         </div>
 
         <h1 class="text-center">Great <span id="typed" class=
-        "song"></span> name...</h1>
+        "typing"></span> name...</h1>
       </div>
     </div>
     <hr>
@@ -63,7 +63,8 @@
         </div>
 
         <div class="col-lg-2">
-          <select class="custom-select my-1 mr-sm-2">
+          <select name="nametype" class=
+          "custom-select my-1 mr-sm-2">
             <option selected value="band">
               band
             </option>
@@ -91,9 +92,13 @@
 
     <div class="row">
       <div class="col">
-        <div class="card cell">
-          <div class="card-body text-center">
-            <h3 class="card-text">{{entry.name}}</h3>
+        <div class="row">
+          <div class="col">
+            <div class="card cell {{entry.which}}">
+              <div class="card-body text-center">
+                <h3 class="card-text">{{entry.name}}</h3>
+              </div>
+            </div>
           </div>
         </div>
       </div>

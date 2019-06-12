@@ -31,6 +31,16 @@ body {
   margin: 0.2em 0 0.2em 0;
 }
 
-.song {
+.typing {
   color: var(--c3);
+}
+
+.band {
+  background: var(--c2);
+}
+.song {
+  background: var(--c3);
+}
+.album {
+  background: var(--c4);
 }
