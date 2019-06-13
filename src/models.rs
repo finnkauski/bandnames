@@ -2,6 +2,7 @@ extern crate diesel;
 
 use super::schema::names;
 use diesel::{prelude::*, SqliteConnection};
+use std::collections::HashMap;
 
 #[derive(Debug, Queryable, Serialize)]
 pub struct Name {
@@ -36,5 +37,19 @@ impl Name {
             .order(names::id.desc())
             .load::<Name>(&*conn)
             .expect("Error! Could not get all entries.")
+    }
+    pub fn all_c(conn: &SqliteConnection) -> HashMap<&str, Vec<Name>> {
+        let mut results = HashMap::new();
+        results.insert(
+            "entries",
+            names::table
+                .order(names::id.desc())
+                .load::<Name>(&*conn)
+                .expect("Error! Could not get all entries."),
+        );
+        results
+    }
+    pub fn delete(id: i32, conn: &SqliteConnection) -> bool {
+        diesel::delete(names::table.find(id)).execute(conn).is_ok()
     }
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html>
 <head>
@@ -95,8 +95,25 @@
         <div class="row">
           <div class="col">
             <div class="card cell {{entry.which}}">
+              <div class="card-header">
+                <b class="text-uppercase">{{entry.which}}</b>
+                <a href=
+                "https://www.google.com/search?as_q={{entry.name}}&amp;as_epq=&amp;as_oq=&amp;as_eq=&amp;as_nlo=&amp;as_nhi=&amp;lr=&amp;cr=&amp;as_qdr=all&amp;as_sitesearch=&amp;as_occt=any&amp;safe=images&amp;as_filetype=&amp;as_rights=">
+                <small>Search</small></a> <a href=
+                "https://www.google.com/search?as_st=y&amp;tbm=isch&amp;as_q={{entry.name}}&amp;as_epq=&amp;as_oq=&amp;as_eq=&amp;imgsz=&amp;imgar=&amp;imgc=&amp;imgcolor=&amp;imgtype=&amp;cr=&amp;as_sitesearch=&amp;safe=images&amp;as_filetype=&amp;as_rights=">
+                <small>Images</small></a>
+              </div>
+
               <div class="card-body text-center">
                 <h3 class="card-text">{{entry.name}}</h3>
+              </div>
+
+              <div class="card-footer">
+                <form class="m-0" action="/" method="get">
+                  <input type="hidden" name="delete" value=
+                  "{{entry.id}}"> <button type="submit" class=
+                  "btn btn-secondary">Delete</button>
+                </form>
               </div>
             </div>
           </div>
@@ -112,7 +129,7 @@
   </div><script type="text/javascript">
 var typed = new Typed('#typed', {
         stringsElement: '#typed-strings',
-    typeSpeed: 60,
+    typeSpeed: 70,
     backDelay: 1900,
     loop: true,
     showCursor: false,

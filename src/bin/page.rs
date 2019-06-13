@@ -19,19 +19,22 @@ fn update(conn: NamesDbConn, name: String, nametype: String) -> Template {
     // insert new entry into table
     Name::insert(&*conn, name, nametype);
 
-    // get results from db
-    let mut results = HashMap::new();
-    results.insert("entries", Name::all(&*conn));
-
-    Template::render("index", results)
+    Template::render("index", Name::all_c(&*conn))
 }
-#[get("/", rank = 2)]
+#[get("/?<delete>", rank = 2)]
+fn delete(conn: NamesDbConn, delete: i32) -> Template {
+    // delete based on id
+    Name::delete(delete, &*conn);
+
+    Template::render("index", Name::all_c(&*conn))
+}
+#[get("/", rank = 3)]
 fn home(conn: NamesDbConn) -> Template {
     // get results from db
     let mut results = HashMap::new();
     results.insert("entries", Name::all(&*conn));
 
-    Template::render("index", results)
+    Template::render("index", Name::all_c(&*conn))
 }
 
 // main launcher
@@ -40,6 +43,6 @@ fn main() {
         .attach(Template::fairing())
         .attach(NamesDbConn::fairing())
         .mount("/", StaticFiles::from("static/"))
-        .mount("/", routes![update, home])
+        .mount("/", routes![update, home, delete])
         .launch();
 }
