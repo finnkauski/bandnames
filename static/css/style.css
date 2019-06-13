@@ -35,12 +35,12 @@ body {
   color: var(--c3);
 }
 
-.band {
-  background: var(--c2);
-}
-.song {
-  background: var(--c3);
-}
-.album {
-  background: var(--c4);
-}
+/* .band { */
+/*   background: var(--c2); */
+/* } */
+/* .song { */
+/*   background: var(--c3); */
+/* } */
+/* .album { */
+/*   background: var(--c4); */
+/* } */
