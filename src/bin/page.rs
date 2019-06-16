@@ -22,6 +22,7 @@ fn make_config() -> Config {
     databases.insert("names_db", Value::from(database_config));
 
     let config = Config::build(Environment::Production)
+        .extra("port", var("PORT").unwrap())
         .extra("template_dir", "static") // add static template directory
         .extra("databases", databases) // add the databases to the config
         .finalize()
