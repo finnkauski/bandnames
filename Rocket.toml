@@ -1,5 +1,2 @@
 [global]
 template_dir = "static"
-
-[global.databases]
-names_db = { url = "names.sqlite"}

@@ -7,11 +7,26 @@ extern crate rocket;
 extern crate rocket_contrib;
 
 // templates, serving static files etc
+use rocket::config::{Config, Environment, Value};
 use rocket_contrib::{serve::StaticFiles, templates::Template};
 use std::collections::HashMap;
+use std::env::var;
 
 // database stuff
 use bandname::{models::*, NamesDbConn};
+fn make_config() -> Config {
+    let mut database_config = HashMap::new();
+    let mut databases = HashMap::new();
+    database_config.insert("url", Value::from(var("DATABASE_URL").unwrap()));
+    databases.insert("names_db", Value::from(database_config));
+
+    let config = Config::build(Environment::Production)
+        .extra("template_dir", "static")
+        .extra("databases", databases)
+        .finalize()
+        .unwrap();
+    config
+}
 
 // route handlers
 #[get("/?<name>&<nametype>")]
@@ -39,7 +54,7 @@ fn home(conn: NamesDbConn) -> Template {
 
 // main launcher
 fn main() {
-    rocket::ignite()
+    rocket::custom(make_config())
         .attach(Template::fairing())
         .attach(NamesDbConn::fairing())
         .mount("/", StaticFiles::from("static/"))
