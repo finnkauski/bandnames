@@ -15,14 +15,15 @@ use std::env::var;
 // database stuff
 use bandname::{models::*, NamesDbConn};
 fn make_config() -> Config {
+    // create the dictionaries for the values of database information
     let mut database_config = HashMap::new();
     let mut databases = HashMap::new();
     database_config.insert("url", Value::from(var("DATABASE_URL").unwrap()));
     databases.insert("names_db", Value::from(database_config));
 
     let config = Config::build(Environment::Production)
-        .extra("template_dir", "static")
-        .extra("databases", databases)
+        .extra("template_dir", "static") // add static template directory
+        .extra("databases", databases) // add the databases to the config
         .finalize()
         .unwrap();
     config
