@@ -10,8 +10,8 @@ extern crate rocket_contrib;
 pub mod models;
 pub mod schema;
 
-use rocket_contrib::databases::diesel::SqliteConnection;
+use rocket_contrib::databases::diesel::PgConnection;
 
 // database stuff
 #[database("names_db")]
-pub struct NamesDbConn(SqliteConnection);
+pub struct NamesDbConn(PgConnection);

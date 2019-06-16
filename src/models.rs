@@ -1,7 +1,7 @@
 extern crate diesel;
 
 use super::schema::names;
-use diesel::{prelude::*, SqliteConnection};
+use diesel::{prelude::*, PgConnection};
 use std::collections::HashMap;
 
 #[derive(Debug, Queryable, Serialize)]
@@ -20,7 +20,7 @@ pub struct NewName {
 
 impl Name {
     // make new post
-    pub fn insert(conn: &SqliteConnection, name: String, which: String) -> usize {
+    pub fn insert(conn: &PgConnection, name: String, which: String) -> usize {
         let new_name = NewName {
             name: name,
             which: which,
@@ -32,13 +32,13 @@ impl Name {
             .expect("Error saving new post!")
     }
     // all
-    pub fn all(conn: &SqliteConnection) -> Vec<Name> {
+    pub fn all(conn: &PgConnection) -> Vec<Name> {
         names::table
             .order(names::id.desc())
             .load::<Name>(&*conn)
             .expect("Error! Could not get all entries.")
     }
-    pub fn all_c(conn: &SqliteConnection) -> HashMap<&str, Vec<Name>> {
+    pub fn all_c(conn: &PgConnection) -> HashMap<&str, Vec<Name>> {
         let mut results = HashMap::new();
         results.insert(
             "entries",
@@ -49,7 +49,7 @@ impl Name {
         );
         results
     }
-    pub fn delete(id: i32, conn: &SqliteConnection) -> bool {
+    pub fn delete(id: i32, conn: &PgConnection) -> bool {
         diesel::delete(names::table.find(id)).execute(conn).is_ok()
     }
 }
