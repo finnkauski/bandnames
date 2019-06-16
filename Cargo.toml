@@ -8,7 +8,7 @@ edition = "2018"
 rocket = "*"
 serde = "*"
 serde_derive = "1.0"
-diesel = {version = "*", features = ["sqlite", "r2d2"]}
+diesel = {version = "*", features = ["postgress", "r2d2"]}
 diesel_migrations = "*"
 cute = "*"
 
