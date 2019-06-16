@@ -35,6 +35,10 @@ body {
   color: var(--c3);
 }
 
+.wow {
+  font-family: "Fredoka One", cursive;
+}
+
 /* .band { */
 /*   background: var(--c2); */
 /* } */
