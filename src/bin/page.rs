@@ -15,6 +15,8 @@ use std::env::var;
 // database stuff
 use bandname::{models::*, NamesDbConn};
 fn make_config() -> Config {
+    let port: u16 = var("PORT").unwrap().parse().unwrap();
+
     // create the dictionaries for the values of database information
     let mut database_config = HashMap::new();
     let mut databases = HashMap::new();
@@ -22,7 +24,7 @@ fn make_config() -> Config {
     databases.insert("names_db", Value::from(database_config));
 
     let config = Config::build(Environment::Production)
-        .extra("port", var("PORT").unwrap())
+        .port(port)
         .extra("template_dir", "static") // add static template directory
         .extra("databases", databases) // add the databases to the config
         .finalize()
