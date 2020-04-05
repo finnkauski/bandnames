@@ -1,0 +1,40 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 20%;
+  height: 100vh;
+}
+
+.item {
+  font-family: "Roboto", sans-serif;
+  font-size: 5vh;
+
+  width: 90vw;
+  background: lightgray;
+
+  margin: 2.5vh 0 0 0;
+}
+
+#header {
+  position: fixed;
+  top: 0;
+
+  font-size: 10vh;
+  font-family: "Pacifico", cursive;
+
+  background: black;
+  color: white;
+
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+}

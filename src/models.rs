@@ -6,12 +6,12 @@ use std::collections::HashMap;
 
 #[derive(Debug, Queryable, Serialize)]
 pub struct Name {
-    pub id: Option<i32>,
+    pub id: i32,
     pub name: String,
     pub which: String,
 }
 
-#[derive(Insertable)]
+#[derive(Insertable, Queryable)]
 #[table_name = "names"]
 pub struct NewName {
     pub name: String,

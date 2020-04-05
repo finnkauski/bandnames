@@ -7,6 +7,7 @@ extern crate rocket;
 extern crate rocket_contrib;
 
 // templates, serving static files etc
+use dotenv::dotenv;
 use rocket::config::{Config, Environment, Value};
 use rocket_contrib::{serve::StaticFiles, templates::Template};
 use std::collections::HashMap;
@@ -15,6 +16,7 @@ use std::env::var;
 // database stuff
 use bandname::{models::*, NamesDbConn};
 fn make_config() -> Config {
+    dotenv().ok();
     let port: u16 = var("PORT").unwrap().parse().unwrap();
 
     // create the dictionaries for the values of database information
@@ -23,13 +25,11 @@ fn make_config() -> Config {
     database_config.insert("url", Value::from(var("DATABASE_URL").unwrap()));
     databases.insert("names_db", Value::from(database_config));
 
-    let config = Config::build(Environment::Production)
+    Config::build(Environment::Production)
         .port(port)
-        .extra("template_dir", "static") // add static template directory
         .extra("databases", databases) // add the databases to the config
         .finalize()
-        .unwrap();
-    config
+        .unwrap()
 }
 
 // route handlers

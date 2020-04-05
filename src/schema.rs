@@ -1,6 +1,6 @@
 table! {
     names (id) {
-        id -> Nullable<Integer>,
+        id -> Int4,
         name -> Text,
         which -> Text,
     }
