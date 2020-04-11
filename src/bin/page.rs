@@ -15,10 +15,12 @@ use std::env::var;
 
 // database stuff
 use bandname::{models::*, NamesDbConn};
+
+/// Custom config maker
+/// Creates a config for Rocket with certain specifications.
 fn make_config() -> Config {
     dotenv().ok();
     let port: u16 = var("PORT").unwrap().parse().unwrap();
-
     // create the dictionaries for the values of database information
     let mut database_config = HashMap::new();
     let mut databases = HashMap::new();
@@ -56,7 +58,7 @@ fn home(conn: NamesDbConn) -> Template {
     Template::render("index", Name::all_c(&*conn))
 }
 
-// main launcher
+/// Main function launching the rocket
 fn main() {
     rocket::custom(make_config())
         .attach(Template::fairing())
