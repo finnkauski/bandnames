@@ -2,6 +2,7 @@ extern crate diesel;
 
 use super::schema::names;
 use diesel::{prelude::*, PgConnection};
+use rocket::request::FromForm;
 use std::collections::HashMap;
 
 #[derive(Debug, Queryable, Serialize)]
@@ -11,11 +12,20 @@ pub struct Name {
     pub which: String,
 }
 
-#[derive(Insertable, Queryable)]
+#[derive(Insertable, Queryable, FromForm)]
 #[table_name = "names"]
 pub struct NewName {
     pub name: String,
     pub which: String,
+}
+
+impl NewName {
+    pub fn insert_self(self, conn: &PgConnection) -> usize {
+        diesel::insert_into(names::table)
+            .values(&self)
+            .execute(conn)
+            .expect("Error saving new bandname!")
+    }
 }
 
 impl Name {

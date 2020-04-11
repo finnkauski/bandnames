@@ -9,6 +9,7 @@ extern crate rocket_contrib;
 // templates, serving static files etc
 use dotenv::dotenv;
 use rocket::config::{Config, Environment, Value};
+use rocket::request::Form;
 use rocket_contrib::{serve::StaticFiles, templates::Template};
 use std::collections::HashMap;
 use std::env::var;
@@ -35,10 +36,10 @@ fn make_config() -> Config {
 }
 
 // route handlers
-#[get("/?<name>&<nametype>")]
-fn update(conn: NamesDbConn, name: String, nametype: String) -> Template {
+#[post("/new", data = "<mainform>")]
+fn update(conn: NamesDbConn, mainform: Form<NewName>) -> Template {
     // insert new entry into table
-    Name::insert(&*conn, name, nametype);
+    mainform.into_inner().insert_self(&conn);
 
     Template::render("index", Name::all_c(&*conn))
 }

@@ -6,16 +6,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&amp;family=Sen:wght@700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
 </head>
-<body class="preload">
+<body>
   <div class="content">
     <div id="header">
       <p>bandnames</p>
     </div>
     <div id="input">
-      <hr />
-      <form action="/" method="get">
+      <form action="/new" method="post" name="mainform" id="mainform">
         <div id="form">
-          <input class="grow-2" type="text" name="name" placeholder="Input idea" /> <select class="grow-1" name="nametype">
+          <input class="grow-2" type="text" name="name" placeholder="Input idea" /> <select class="grow-1" name="which">
             <option selected="selected" value="band">
               band
             </option>
@@ -28,7 +27,6 @@
           </select> <button class="grow-1" type="submit">Submit</button>
         </div>
       </form>
-      <hr />
     </div>
     <div class="container">
       {% for entry in entries%}
