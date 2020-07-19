@@ -35,5 +35,10 @@
               {% block chunks %}{% endblock chunks %}
             </div>
         </div>
+        <script>
+            if (location.href.indexOf('new') !== -1) {
+                location.href = location.href.replace("/new", "/");
+            }
+        </script>
     </body>
 </html>
