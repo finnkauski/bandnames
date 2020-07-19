@@ -1,8 +1,14 @@
+html {
+  font-size: 20px;
+}
+
 @media screen and (max-width: 992px) {
   html {
-    font-size: 10px;
+    font-size: 9px;
   }
 }
+
+
 body {
   background: #ffffff;
   display: flex;
@@ -36,9 +42,9 @@ form {
   justify-content: center;
 
   align-items: center;
-  width: 60%;
   min-height: 12em;
 
+  width: 90%;
   background: #ffffff;
 
   border: 0.1em solid rgba(0,0,0,0.1);
@@ -46,7 +52,7 @@ form {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
 
-  padding: 0 3em 0 3em;
+  padding: 0 5% 0 5%;
 }
 #form-checkboxes {
   display: flex;
@@ -95,7 +101,7 @@ input[type="text"] {
 
 /* bandname chunk */
 #chunks {
-  width:100%;
+  width:90%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -108,7 +114,7 @@ input[type="text"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 60%;
+  width: 100%;
   min-height: 8em;
 
   margin: 0 0 2em 0;
