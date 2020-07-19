@@ -31,6 +31,11 @@ use models::*;
 #[database("names_db")]
 pub struct NamesDbConn(PgConnection);
 
+#[derive(Serialize)]
+struct Context {
+    names: Vec<Name>,
+}
+
 /// Custom config maker
 /// Creates a config for Rocket with certain specifications.
 fn make_config() -> Config {
@@ -55,7 +60,18 @@ fn insert(conn: NamesDbConn, mainform: Form<NewName>) -> Template {
     // insert new entry into table
     mainform.into_inner().insert_self(&conn);
 
-    Template::render("index", Name::all_c(&*conn))
+    home(conn)
+}
+
+/// Handler for homepage
+#[get("/", rank = 1)]
+fn home(conn: NamesDbConn) -> Template {
+    Template::render(
+        "index",
+        Context {
+            names: Name::all(&conn),
+        },
+    )
 }
 
 /// Handler for the delete route
@@ -64,17 +80,7 @@ fn delete(conn: NamesDbConn, delete: i32) -> Template {
     // delete based on id
     Name::delete(delete, &*conn);
 
-    Template::render("index", Name::all_c(&*conn))
-}
-
-/// Handler for homepage
-#[get("/", rank = 3)]
-fn home(conn: NamesDbConn) -> Template {
-    // get results from db
-    let mut results = HashMap::new();
-    results.insert("entries", Name::all(&*conn));
-
-    Template::render("index", Name::all_c(&*conn))
+    home(conn)
 }
 
 /// Main function launching the rocket

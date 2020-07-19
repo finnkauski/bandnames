@@ -3,7 +3,6 @@ extern crate diesel;
 use super::schema::names;
 use diesel::{prelude::*, PgConnection};
 use rocket::request::FromForm;
-use std::collections::HashMap;
 
 #[derive(Debug, Queryable, Serialize)]
 pub struct Name {
@@ -12,7 +11,7 @@ pub struct Name {
     pub which: String,
 }
 
-#[derive(Insertable, Queryable, FromForm)]
+#[derive(Insertable, Queryable, FromForm, Debug)]
 #[table_name = "names"]
 pub struct NewName {
     pub name: String,
@@ -29,36 +28,25 @@ impl NewName {
 }
 
 impl Name {
-    // make new post
+    /// Make new post
     pub fn insert(conn: &PgConnection, name: String, which: String) -> usize {
-        let new_name = NewName {
-            name: name,
-            which: which,
-        };
+        let new_name = NewName { name, which };
 
         diesel::insert_into(names::table)
             .values(&new_name)
             .execute(conn)
             .expect("Error saving new post!")
     }
-    // all
+
+    /// Get all names
     pub fn all(conn: &PgConnection) -> Vec<Name> {
         names::table
             .order(names::id.desc())
             .load::<Name>(&*conn)
             .expect("Error! Could not get all entries.")
     }
-    pub fn all_c(conn: &PgConnection) -> HashMap<&str, Vec<Name>> {
-        let mut results = HashMap::new();
-        results.insert(
-            "entries",
-            names::table
-                .order(names::id.desc())
-                .load::<Name>(&*conn)
-                .expect("Error! Could not get all entries."),
-        );
-        results
-    }
+
+    /// Delete a entry form a database
     pub fn delete(id: i32, conn: &PgConnection) -> bool {
         diesel::delete(names::table.find(id)).execute(conn).is_ok()
     }

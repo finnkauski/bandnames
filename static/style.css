@@ -1,5 +1,12 @@
+@media screen and (max-width: 992px) {
+  html {
+    font-size: 10px;
+  }
+}
 body {
   background: #ffffff;
+  display: flex;
+  justify-content: center;
 }
 form {
   display: flex;
@@ -8,48 +15,16 @@ form {
   font-size:0.9em;
 }
 
-/* header */
-#title {
-  font-family: "Libre Barcode 39 Text", cursive;
-  font-size: 3.5em;
-  color: #ffffff;
-}
-#header {
-  position: fixed;
-  height: 8em;
-  width: 100vw;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-
-  background: #222222;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  z-index: 100;
-}
-
 /* main contents */
 #content {
   width:100%;
+  max-width: 1500px;
   display: flex;
   align-items: center;
   flex-direction: column;
 
-  margin-top: 9.0em;
+  margin-top: 4.0em;
   font-family: Inter;
-}
-#chunks {
-  width:100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  margin-top: 3.0em;
-  font-family: Inter;
-
 }
 
 /* form stuff */
@@ -62,7 +37,7 @@ width: 100%;
 
   align-items: center;
   width: 95%;
-  height: 12em;
+  min-height: 12em;
 
   background: #ffffff;
 
@@ -79,7 +54,7 @@ width: 100%;
 }
 #form-options {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-even;
   align-items: center;
 
   margin-top: 1em;
@@ -94,7 +69,7 @@ width: 100%;
   border-color: #f93753;
   color: #f93753;
 
-  font-size: 12pt;
+  font-size: 1em;
   font-weight: 800;
 
   background: white;
@@ -119,12 +94,22 @@ input[type="text"] {
 }
 
 /* bandname chunk */
+#chunks {
+  width:100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  margin-top: 3.0em;
+  font-family: Inter;
+
+}
 .chunk {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 95%;
-  height: 8em;
+  min-height: 8em;
 
   margin: 0 0 2em 0;
   padding: 0 0 0 4em;
@@ -154,8 +139,6 @@ input[type="text"] {
 
   width: 9em;
   height: 1.5em;
-
-  margin: 0px 1em;
 }
 .type-container {
   display: flex;
@@ -199,4 +182,7 @@ input[type="text"] {
 
   margin-left: 0.7em;
 }
+a:link {
+  text-decoration: none ;
+} 
 

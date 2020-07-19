@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Bandnames</title><!-- Links  -->
+        <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&amp;family=Libre+Barcode+39+Text&amp;display=swap" rel="stylesheet" />
+        <meta content="A band name recording tool" name="description">
+        <meta content="Art Eidukas" name="author">
+        <meta content="width=display-width, initial-scale=1" name="viewport">
+    </head>
+    <body>
+        <div id="content">
+            <div id="form-container">
+                <form method="post" id="input-form" action="/new">
+                    <input type="text" id="bandname-input" name="name" value="" placeholder="Submit your idea..." autocomplete="off" autofocus required/>
+                    <div id="form-options">
+                        <div id="form-checkboxes">
+                            <div class="type-radio">
+                                <p for="type-band">Band</p>
+                                <input type="radio" id="type-band" name="which" value="band" required/>
+                            </div>
+                            <div class="type-radio">
+                                <p for="type-song">Song</p>
+                                <input type="radio" id="type-song" name="which" value="song"/>
+                            </div>
+                            <div class="type-radio">
+                                <p for="type-album">Album</p>
+                                <input type="radio" id="type-album" name="which" value="album"/>
+                            </div>
+                        </div>
+                    <input type="submit" id="bandname-submit" value="Submit"/>
+                    </div>
+                </form>
+            </div>
+            <div id="chunks">
+              {% block chunks %}{% endblock chunks %}
+            </div>
+        </div>
+    </body>
+</html>
