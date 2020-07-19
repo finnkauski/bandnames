@@ -29,14 +29,14 @@ form {
 
 /* form stuff */
 #input-form {
-width: 100%;
+  width: 100%;
 }
 #form-container {
   display:flex;
   justify-content: center;
 
   align-items: center;
-  width: 95%;
+  width: 60%;
   min-height: 12em;
 
   background: #ffffff;
@@ -108,7 +108,7 @@ input[type="text"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 95%;
+  width: 60%;
   min-height: 8em;
 
   margin: 0 0 2em 0;
