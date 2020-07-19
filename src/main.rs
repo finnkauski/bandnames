@@ -64,7 +64,7 @@ fn insert(conn: NamesDbConn, mainform: Form<NewName>) -> Template {
 }
 
 /// Handler for homepage
-#[get("/", rank = 1)]
+#[get("/")]
 fn home(conn: NamesDbConn) -> Template {
     Template::render(
         "index",
@@ -74,21 +74,12 @@ fn home(conn: NamesDbConn) -> Template {
     )
 }
 
-/// Handler for the delete route
-#[get("/?<delete>", rank = 2)]
-fn delete(conn: NamesDbConn, delete: i32) -> Template {
-    // delete based on id
-    Name::delete(delete, &*conn);
-
-    home(conn)
-}
-
 /// Main function launching the rocket
 fn main() {
     rocket::custom(make_config())
         .attach(Template::fairing())
         .attach(NamesDbConn::fairing())
         .mount("/", StaticFiles::from("static/"))
-        .mount("/", routes![insert, home, delete])
+        .mount("/", routes![insert, home])
         .launch();
 }
