@@ -1,21 +1,35 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 
-extern crate bandname;
-extern crate diesel;
 #[macro_use]
-extern crate rocket;
+extern crate serde_derive;
+
+#[macro_use]
+extern crate diesel;
+
+#[macro_use]
 extern crate rocket_contrib;
 
-// templates, serving static files etc
-use dotenv::dotenv;
-use rocket::config::{Config, Environment, Value};
-use rocket::request::Form;
-use rocket_contrib::{serve::StaticFiles, templates::Template};
+pub mod models;
+pub mod schema;
+
+// templates, serving static files and other rocket related stuff
+use rocket::{
+    config::{Config, Environment, Value},
+    get, post,
+    request::Form,
+    routes,
+};
+use rocket_contrib::{databases::diesel::PgConnection, serve::StaticFiles, templates::Template};
 use std::collections::HashMap;
+
+use dotenv::dotenv;
 use std::env::var;
 
 // database stuff
-use bandname::{models::*, NamesDbConn};
+use models::*;
+
+#[database("names_db")]
+pub struct NamesDbConn(PgConnection);
 
 /// Custom config maker
 /// Creates a config for Rocket with certain specifications.
@@ -35,14 +49,16 @@ fn make_config() -> Config {
         .unwrap()
 }
 
-// route handlers
+/// Handler for the insert route
 #[post("/new", data = "<mainform>")]
-fn update(conn: NamesDbConn, mainform: Form<NewName>) -> Template {
+fn insert(conn: NamesDbConn, mainform: Form<NewName>) -> Template {
     // insert new entry into table
     mainform.into_inner().insert_self(&conn);
 
     Template::render("index", Name::all_c(&*conn))
 }
+
+/// Handler for the delete route
 #[get("/?<delete>", rank = 2)]
 fn delete(conn: NamesDbConn, delete: i32) -> Template {
     // delete based on id
@@ -50,6 +66,8 @@ fn delete(conn: NamesDbConn, delete: i32) -> Template {
 
     Template::render("index", Name::all_c(&*conn))
 }
+
+/// Handler for homepage
 #[get("/", rank = 3)]
 fn home(conn: NamesDbConn) -> Template {
     // get results from db
@@ -65,6 +83,6 @@ fn main() {
         .attach(Template::fairing())
         .attach(NamesDbConn::fairing())
         .mount("/", StaticFiles::from("static/"))
-        .mount("/", routes![update, home, delete])
+        .mount("/", routes![insert, home, delete])
         .launch();
 }

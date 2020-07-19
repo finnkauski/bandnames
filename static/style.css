@@ -1,173 +1,202 @@
-:root {
-  --borders: 1px;
-  --border-color: rgb(30, 30, 30);
-}
-
-.grow-1 {
-  flex-grow: 1;
-}
-.grow-2 {
-  flex-grow: 2;
-}
-
-.song {
-  background: #ff6f69;
-  color: #ffeead;
-}
-.band {
-  background: #ffcc5c;
-  color: #ff6f69;
-}
-.album {
-  background: #aad8b0;
-  color: white;
-}
-
 body {
-  margin: 0;
+  background: #ffffff;
+}
+form {
+  display: flex;
+  flex-direction: column;
+
+  font-size:0.9em;
 }
 
-form {
+/* header */
+#title {
+  font-family: "Libre Barcode 39 Text", cursive;
+  font-size: 3.5em;
+  color: #ffffff;
+}
+#header {
+  position: fixed;
+  height: 8em;
+  width: 100vw;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+
+  background: #222222;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 100;
+}
+
+/* main contents */
+#content {
+  width:100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  margin-top: 9.0em;
+  font-family: Inter;
+}
+#chunks {
+  width:100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  margin-top: 3.0em;
+  font-family: Inter;
+
+}
+
+/* form stuff */
+#input-form {
+width: 100%;
+}
+#form-container {
+  display:flex;
+  justify-content: center;
+
+  align-items: center;
+  width: 95%;
+  height: 12em;
+
+  background: #ffffff;
+
+  border: 0.1em solid rgba(0,0,0,0.1);
+  border-radius: 1em;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+
+  padding: 0 3em 0 3em;
+}
+#form-checkboxes {
+  display: flex;
+  justify-content: space-around;
+}
+#form-options {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  margin-top: 1em;
+}
+#bandname-submit {
+  height: 2.4em;
+  width: 10em;
+
+  border: solid;
+  border-width: 0.1em;
+  border-radius: 2em;
+  border-color: #f93753;
+  color: #f93753;
+
+  font-size: 12pt;
+  font-weight: 800;
+
+  background: white;
+
+  transition-duration: 0.1s;
+}
+#bandname-submit:hover {
+  background: #f93753; 
+  color: white;
+}
+input[type="text"] {
+  height: 3rem;
+  border: 0.15rem solid rgba(0,0,0,0.1);
+  border-radius: 2rem;
+  padding-left: 1.3em;
+
+  font-size: 2em;
+}
+.type-radio {
+  display: flex;
+  margin-right: 2em;
 }
 
-hr {
-  margin-left: 0;
-  margin-right: 0;
-  border: var(--borders) solid var(--border-color);
-}
-.content {
+/* bandname chunk */
+.chunk {
   display: flex;
   flex-direction: column;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-
-  margin-top: 12em;
-}
-
-.item {
-  /* Fonts  */
-  font-family: "Sen", sans-serif;
-  font-size: 2.2em;
-
-  /* Background  */
-  box-shadow: 0 5px 4px -4px rgba(0, 0, 0, 0.75);
-
-  /* Flex  */
-  display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-
-  /* Shape  */
-  padding: 10px 0 10px 0;
-  margin: 1% 0% 1% 0%;
   width: 95%;
-  height: 2em;
+  height: 8em;
 
-  /* Borders */
-  border-radius: 5px;
+  margin: 0 0 2em 0;
+  padding: 0 0 0 4em;
 
-  /* Animation  */
-  transition: font-size 0.2s ease-in-out;
+  box-sizing: border-box;
+
+  background: #ffffff;
+  border: 0.1em solid rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 1em;
 }
+.name {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.0em;
 
-.item:hover {
-  font-size: 4em;
+  color: #222222;
+
+  margin-bottom: 0.3em;
 }
-
-.item p {
-  margin: 0 0 0 0;
-}
-
-#input {
-  position: fixed;
-  top: 100px;
-  width: 100%;
-  z-index: 1;
-  background: #ffeead;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  border-bottom: var(--borders) solid var(--border-color);
-}
-
-#form {
+.extras {
+  /* Auto Layout */
   display: flex;
-  width: 100%;
-  height: 30px;
-}
-
-input {
-  display: flex;
+  flex-direction: row;
   align-items: center;
 
-  background: white;
-  border: var(--borders) solid var(--border-color);
-  border-radius: 5px;
+  width: 9em;
+  height: 1.5em;
 
-  /* Padding */
-  padding: 0.6%;
-
-  /* Margins */
-  margin-left: 1%;
-  margin-right: 1%;
-
-  /* Shape  */
-  width: 100%;
+  margin: 0px 1em;
 }
-
-select {
-  background: white;
-  border: var(--borders) solid var(--border-color);
-  border-radius: 5px;
-
-  /* Margins */
-  margin-left: 1%;
-  margin-right: 1%;
-
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  text-indent: 1px;
-  text-overflow: "";
-}
-
-button {
-  background: white;
-  border: var(--borders) solid var(--border-color);
-  border-radius: 5px;
-
-  /* Margins */
-  margin-left: 1%;
-  margin-right: 1%;
-}
-
-button:hover {
-  background: black;
-  color: white;
-}
-
-#header {
-  position: fixed;
-  top: 0;
-  z-index: 1;
-
-  font-family: "Sen", sans-serif;
-  font-size: 60px;
-
-  background: #ff6f69;
-  color: white;
-
-  align-items: center;
+.type-container {
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
 
-  height: 100px;
-  width: 100%;
+  width: 3.9rem;
+  height: 1.7rem;
+
+  box-sizing: border-box;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-radius: 0.3em; 
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 0.8em;
+  text-transform: uppercase;
 }
+.band {
+  color: #f93753;
+  border-color: #f93753;
+}
+.song {
+  color: #001aff;
+  border-color: #001aff;
+}
+.album {
+  color: #fa6511;
+  border-color: #fa6511;
+}
+.search {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.8em;
+
+  color: #222222;
+
+  margin-left: 0.7em;
+}
+
