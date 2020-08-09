@@ -1,46 +1,39 @@
-html {
-  font-size: 20px;
-}
-
-@media screen and (max-width: 992px) {
-  html {
-    font-size: 9px;
-  }
-}
-
+/* Remove the outline around the focused input */
 *:focus {
-    outline: none;
+  outline: none;
 }
-body {
+
+/* Root of the app - equivalent of body */
+#root {
   background: #ffffff;
   display: flex;
   justify-content: center;
 }
-form {
-  display: flex;
-  flex-direction: column;
 
-  font-size:0.9em;
-}
-
-/* main contents */
+/* main content container */
 #content {
-  width:100%;
+  width: 100%;
   max-width: 1500px;
   display: flex;
   align-items: center;
   flex-direction: column;
 
-  margin-top: 4.0em;
+  margin-top: 4em;
   font-family: Inter;
 }
 
 /* form stuff */
+form {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 0.9em;
+}
 #input-form {
   width: 100%;
 }
 #form-container {
-  display:flex;
+  display: flex;
   justify-content: center;
 
   align-items: center;
@@ -49,7 +42,8 @@ form {
   width: 90%;
   background: #ffffff;
 
-  border: 0.1em solid rgba(0,0,0,0.1);
+  color: black;
+  border: 0.1em solid rgba(0, 0, 0, 0.1);
   border-radius: 1em;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
@@ -85,12 +79,12 @@ form {
   transition-duration: 0.1s;
 }
 #bandname-submit:hover {
-  background: #f93753; 
+  background: #f93753;
   color: white;
 }
 input[type="text"] {
   height: 3rem;
-  border: 0.15rem solid rgba(0,0,0,0.1);
+  border: 0.15rem solid rgba(0, 0, 0, 0.1);
   border-radius: 2rem;
   padding-left: 1.3em;
 
@@ -104,14 +98,14 @@ input[type="text"] {
 
 /* bandname chunk */
 #chunks {
-  width:90%;
+  width: 90%;
   display: flex;
   align-items: center;
   flex-direction: column;
 
-  margin-top: 3.0em;
+  margin-top: 3em;
   font-family: Inter;
-
+  padding: 0;
 }
 .chunk {
   display: flex;
@@ -126,7 +120,7 @@ input[type="text"] {
   box-sizing: border-box;
 
   background: #ffffff;
-  border: 0.1em solid rgba(0,0,0,0.1);
+  border: 0.1em solid rgba(0, 0, 0, 0.1);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 1em;
 }
@@ -134,7 +128,7 @@ input[type="text"] {
   font-family: Inter;
   font-style: normal;
   font-weight: 600;
-  font-size: 2.0em;
+  font-size: 2em;
 
   color: #222222;
 
@@ -161,7 +155,7 @@ input[type="text"] {
   box-sizing: border-box;
   border-width: 0.1rem;
   border-style: solid;
-  border-radius: 0.3em; 
+  border-radius: 0.3em;
 
   font-family: Inter;
   font-style: normal;
@@ -171,15 +165,15 @@ input[type="text"] {
 }
 .band {
   color: #f93753;
-  border-color: #f93753;
+  border-color: #f93753 !important;
 }
 .song {
   color: #001aff;
-  border-color: #001aff;
+  border-color: #001aff !important;
 }
 .album {
-  color: #A6D81A;
-  border-color: #A6D81A;
+  color: #a6d81a;
+  border-color: #a6d81a !important;
 }
 .search {
   font-family: Inter;
@@ -192,6 +186,15 @@ input[type="text"] {
   margin-left: 0.7em;
 }
 a:link {
-  text-decoration: none ;
-} 
+  text-decoration: none;
+}
 
+.bg-band {
+  background: #f93753 !important;
+}
+.bg-song {
+  background: #001aff !important;
+}
+.bg-album {
+  background: #a6d81a !important;
+}
