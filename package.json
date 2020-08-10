@@ -13,17 +13,14 @@
   "main": "frontend/index.js",
   "scripts": {
     "start": "cargo run",
-    "build": "cargo build --release && npm install && node_modules/webpack/bin/webpack.js"
+    "build": "cargo build --release && npm install && node_modules/webpack/bin/webpack.js",
+    "heroku": "npm run build && ./target/release/diesel/migration run"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
