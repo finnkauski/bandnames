@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import "./App.css";
 import Chunks from "./Chunks.js";
 import InputForm from "./Form.js";
@@ -13,19 +13,19 @@ import InputForm from "./Form.js";
 // TODO: add greyed out chunk component to happen on load.
 
 function App() {
-  const [newData, setNewData] = useState(true);
-  const [data, setData] = useState([{ name: "Bla", id: 10, which: "band" }]);
-  return (
-    <div id="content">
-      <InputForm alertNewData={setNewData} />
-      <Chunks
-        data={data}
-        dataSetter={setData}
-        newData={newData}
-        newDataSetter={setNewData}
-      />
-    </div>
-  );
+    const [newData, setNewData] = useState(true);
+    const [data, setData] = useState([{name: "Bla", id: 10, which: "band"}]);
+    return (
+        <div id="content">
+            <InputForm alertNewData={setNewData} />
+            <Chunks
+                data={data}
+                dataSetter={setData}
+                newData={newData}
+                newDataSetter={setNewData}
+            />
+        </div>
+    );
 }
 
 export default App;
