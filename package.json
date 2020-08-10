@@ -12,9 +12,7 @@
   },
   "main": "frontend/index.js",
   "scripts": {
-    "start": "cargo run",
-    "build": "cargo build --release && npm install && node_modules/webpack/bin/webpack.js",
-    "heroku": "npm run build && ./target/release/diesel/migration run"
+    "build": "cargo build --release && node_modules/webpack/bin/webpack.js"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,2 +1,2 @@
-release: npm run heroku
+release: ./target/release/diesel/migration run
 web: ./target/release/bandname
