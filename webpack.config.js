@@ -1,0 +1,26 @@
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+module.exports = {
+  mode: "development",
+  entry: "./frontend/index.js",
+  output: {
+    path: path.resolve(__dirname + "/static"),
+    filename: "bundle.js",
+  },
+  plugins: [new MiniCssExtractPlugin({ filename: "style.css" })],
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        query: { presets: ["@babel/preset-react"] },
+      },
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+    ],
+  },
+};

@@ -2,7 +2,6 @@ extern crate diesel;
 
 use super::schema::names;
 use diesel::{prelude::*, PgConnection};
-use rocket::request::FromForm;
 
 #[derive(Debug, Queryable, Serialize)]
 pub struct Name {
@@ -11,7 +10,7 @@ pub struct Name {
     pub which: String,
 }
 
-#[derive(Insertable, Queryable, FromForm, Debug)]
+#[derive(Insertable, Queryable, Deserialize, Debug)]
 #[table_name = "names"]
 pub struct NewName {
     pub name: String,
