@@ -12,14 +12,18 @@
   },
   "main": "frontend/index.js",
   "scripts": {
-    "start": "cargo run",
-    "build": "cargo build --release && npm install && node_modules/webpack/bin/webpack.js"
+    "build": "cargo build --release && npm install && node_modules/webpack/bin/webpack.js",
+    "serve": "webpack-dev-server --open"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
@@ -32,6 +36,7 @@
     "babel-loader": "^8.1.0",
     "css-loader": "^4.2.1",
     "mini-css-extract-plugin": "^0.9.0",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }

@@ -8,6 +8,9 @@ module.exports = {
     path: path.resolve(__dirname + "/static"),
     filename: "bundle.js",
   },
+  devServer: {
+    contentBase: "./static",
+  },
   plugins: [new MiniCssExtractPlugin({ filename: "style.css" })],
   module: {
     rules: [
