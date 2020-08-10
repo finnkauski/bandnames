@@ -12,7 +12,8 @@
   },
   "main": "frontend/index.js",
   "scripts": {
-    "build": "node_modules/webpack/bin/webpack.js"
+    "start": "cargo run",
+    "build": "cargo build --release && npm install && node_modules/webpack/bin/webpack.js"
   },
   "eslintConfig": {
     "extends": "react-app"
