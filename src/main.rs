@@ -13,16 +13,13 @@ pub mod models;
 pub mod schema;
 
 // templates, serving static files and other rocket related stuff
+use dotenv::dotenv;
 use rocket::{
     config::{Config, Environment, Value},
-    get, post,
-    request::Form,
-    routes,
+    get, post, routes,
 };
-use rocket_contrib::{databases::diesel::PgConnection, serve::StaticFiles, templates::Template};
+use rocket_contrib::{databases::diesel::PgConnection, json::Json, serve::StaticFiles};
 use std::collections::HashMap;
-
-use dotenv::dotenv;
 use std::env::var;
 
 // database stuff
@@ -30,11 +27,6 @@ use models::*;
 
 #[database("names_db")]
 pub struct NamesDbConn(PgConnection);
-
-#[derive(Serialize)]
-struct Context {
-    names: Vec<Name>,
-}
 
 /// Custom config maker
 /// Creates a config for Rocket with certain specifications.
@@ -55,31 +47,23 @@ fn make_config() -> Config {
 }
 
 /// Handler for the insert route
-#[post("/new", data = "<mainform>")]
-fn insert(conn: NamesDbConn, mainform: Form<NewName>) -> Template {
+#[post("/new", data = "<data>")]
+fn insert(conn: NamesDbConn, data: Json<NewName>) -> String {
     // insert new entry into table
-    mainform.into_inner().insert_self(&conn);
-
-    home(conn)
+    data.into_inner().insert_self(&conn);
+    "Success!".into()
 }
 
-/// Handler for homepage
-#[get("/")]
-fn home(conn: NamesDbConn) -> Template {
-    Template::render(
-        "index",
-        Context {
-            names: Name::all(&conn),
-        },
-    )
+#[get("/all")]
+fn all(conn: NamesDbConn) -> Json<Vec<Name>> {
+    Json(Name::all(&conn))
 }
 
 /// Main function launching the rocket
 fn main() {
     rocket::custom(make_config())
-        .attach(Template::fairing())
         .attach(NamesDbConn::fairing())
-        .mount("/", StaticFiles::from("static/"))
-        .mount("/", routes![insert, home])
+        .mount("/", StaticFiles::from("static"))
+        .mount("/", routes![insert, all])
         .launch();
 }

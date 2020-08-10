@@ -1,13 +1,3 @@
-html {
-  font-size: 20px;
-}
-
-@media screen and (max-width: 992px) {
-  html {
-    font-size: 9px;
-  }
-}
-
 /* Remove the outline around the focused input */
 *:focus {
   outline: none;
@@ -208,4 +198,3 @@ a:link {
 .bg-album {
   background: #a6d81a !important;
 }
-
