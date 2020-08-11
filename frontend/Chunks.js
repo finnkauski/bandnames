@@ -3,22 +3,35 @@ import "./Chunks.css";
 import TextTruncate from "react-text-truncate";
 import axios from "axios";
 
+const handleEasterEgg = (e, which) => {
+  let typeLabel = e.currentTarget;
+  typeLabel.innerHTML = "Hi!";
+  setTimeout(() => {
+    typeLabel.innerHTML = which;
+  }, 2000);
+};
+
 function Chunk(props) {
   return (
-    <li className="chunk">
-      <div className="name">
-        <TextTruncate lines={1} text={props.name} />
-      </div>
-      <div className="extras">
-        <div className={"type-container " + props.which}>
-          <p id={props.id}>{props.which}</p>
+    <li className="chunk-container">
+      <div className="chunk">
+        <div className="name">
+          <TextTruncate lines={1} text={props.name} />
         </div>
-        <a
-          className="search"
-          href={`https://www.google.com/search?q=${props.name} ${props.which}`}
-        >
-          Search ->
-        </a>
+        <div className="extras">
+          <div
+            onClick={(e) => handleEasterEgg(e, props.which)}
+            className={"type-container " + props.which}
+          >
+            <p id={props.id}>{props.which}</p>
+          </div>
+          <a
+            className="search"
+            href={`https://www.google.com/search?q=${props.name} ${props.which}`}
+          >
+            Search ->
+          </a>
+        </div>
       </div>
     </li>
   );

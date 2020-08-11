@@ -8,6 +8,10 @@ html {
   }
 }
 
+body {
+  margin: 0;
+}
+
 /* Remove the outline around the focused input */
 *:focus {
   outline: none;
@@ -122,6 +126,10 @@ input[type="text"] {
   flex-direction: column;
   justify-content: center;
   width: 100%;
+}
+.chunk-container {
+  display: flex;
+  width: 100%;
   min-height: 8em;
 
   margin: 0 0 2em 0;
@@ -197,15 +205,5 @@ input[type="text"] {
 }
 a:link {
   text-decoration: none;
-}
-
-.bg-band {
-  background: #f93753 !important;
-}
-.bg-song {
-  background: #001aff !important;
-}
-.bg-album {
-  background: #a6d81a !important;
 }
 
