@@ -1,0 +1,15 @@
+[package]
+name = "frontend"
+version = "0.1.0"
+authors = ["finnkauski <iwiivi@gmail.com>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+yew = "*"
+yew-router = "*"
+wasm-bindgen = "*"
+anyhow = "*"
+serde = { version = "1.0", features = ["derive"] }
