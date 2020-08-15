@@ -18,3 +18,11 @@ was redesigned several times including even trying to make this into a WASM base
 The design was developed (and will be developed) in Figma.
 
 See demo: [here](https://a-bandn.herokuapp.com)
+
+## TODO:
+
+- [ ] Add authentication using JWT and Db
+- [ ] Refactor closer to TatriX `Real World` example repo
+- [ ] Implement deletion for authenticated users
+- [ ] Implement voting for authenticated users
+- [ ] Pagination for each page

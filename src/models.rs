@@ -3,8 +3,11 @@ extern crate diesel;
 use super::schema::names;
 use diesel::{prelude::*, PgConnection};
 
+#[database("names_db")]
+pub(crate) struct NamesDbConn(PgConnection);
+
 #[derive(Debug, Queryable, Serialize)]
-pub struct Name {
+pub(crate) struct Name {
     pub id: i32,
     pub name: String,
     pub which: String,
@@ -12,7 +15,7 @@ pub struct Name {
 
 #[derive(Insertable, Queryable, Deserialize, Debug)]
 #[table_name = "names"]
-pub struct NewName {
+pub(crate) struct NewName {
     pub name: String,
     pub which: String,
 }
@@ -27,16 +30,6 @@ impl NewName {
 }
 
 impl Name {
-    /// Make new post
-    pub fn insert(conn: &PgConnection, name: String, which: String) -> usize {
-        let new_name = NewName { name, which };
-
-        diesel::insert_into(names::table)
-            .values(&new_name)
-            .execute(conn)
-            .expect("Error saving new post!")
-    }
-
     /// Get all names
     pub fn all(conn: &PgConnection) -> Vec<Name> {
         names::table

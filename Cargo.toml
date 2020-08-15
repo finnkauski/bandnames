@@ -1,5 +1,5 @@
 [package]
-name = "bandname"
+name = "bandnames"
 version = "0.1.0"
 authors = ["Finnkauski <iwiivi@gmail.com>"]
 edition = "2018"
