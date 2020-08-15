@@ -25,4 +25,7 @@ See demo: [here](https://a-bandn.herokuapp.com)
 - [ ] Refactor closer to TatriX `Real World` example repo
 - [ ] Implement deletion for authenticated users
 - [ ] Implement voting for authenticated users
+- [ ] Start tracking date of input
 - [ ] Pagination for each page
+- [ ] Implement `react-router` to handle zooming into names
+- [ ] add author, details etc fields
