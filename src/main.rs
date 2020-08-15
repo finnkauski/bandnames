@@ -9,8 +9,9 @@ extern crate diesel;
 #[macro_use]
 extern crate rocket_contrib;
 
-pub mod models;
-pub mod schema;
+// mod auth;
+mod models;
+mod schema;
 
 // templates, serving static files and other rocket related stuff
 use dotenv::dotenv;
