@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+message NewNameMsg {
+  string name = 1;
+  string which = 2;
+}
+
