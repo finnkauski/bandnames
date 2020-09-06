@@ -30,6 +30,7 @@ function InputForm(props) {
       .then(function (response) {
         //handle success
         console.log(response);
+        document.getElementById("input-form").reset();
         props.alertNewData(true);
       })
       .catch(function (response) {
