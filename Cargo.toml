@@ -10,7 +10,7 @@ rocket = "0.4.5"
 rocket_contrib = { version = "0.4.5", default-features = false, features = ["diesel_postgres_pool", "tera_templates", "serve", "json"] }
 
 # Database stuff
-diesel = { version = "1.4.5", features = ["postgres", "r2d2"], default-features = false}
+diesel = { version = "1.4.6", features = ["postgres", "r2d2"], default-features = false}
 
 # Serialization
 serde = "*"
